@@ -14,7 +14,7 @@ app.engine('hbs', hbs.engine({
     layoutsDir: __dirname + '/views/layouts/',
 }))
 
-
+app.use(express.static('public'));
 
 
 app.get('/', (req, res) => {
