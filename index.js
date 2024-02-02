@@ -17,12 +17,6 @@ app.engine('hbs', hbs.engine({
 app.use(express.static('public'));
 
 
-app.get('/', (req, res) => {
-  res.render('main.hbs', { title: 'My Web App' });
-});
-
-
-
 
 
 
