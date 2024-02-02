@@ -65,6 +65,29 @@ app.get('/article/:slug', (req, res) => {
     });
 });
 
+app.get('/author/:author_id', (req, res) => {
+    let authorQuery = `select name from author where id = ${req.params.author_id}`;
+    let articlesQuery = `select * from article where author_id = ${req.params.author_id}`;
+    let authorName;
+    let authorArticles;
+   // author's name
+    con.query(authorQuery, (err, result) => {
+        if (err) throw err;
+        authorName = result[0].name;
+        // author's articles
+        con.query(articlesQuery, (err, result) => {
+            if (err) throw err;
+            authorArticles = result;
+            res.render('author', {
+                authorName: authorName,
+                authorArticles: authorArticles
+            });
+        });
+    });
+});
+
+
+
 app.listen(3000, () => {
 	console.log('App is started at http://localhost:3000');
 });
